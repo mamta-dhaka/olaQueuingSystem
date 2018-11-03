@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+
+    <div class="todos" *ngIf="allRequests">
+      <table class="table">
+        <thead class="h">
+        <tr class="h">
+          <th class="h">RequestId</th>
+          <th class="h">customerId</th>
+          <th class="h">DriverId</th>
+          <th class="h">Status</th>
+          <th class="h">time elapsed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let request of allRequests">
+           <td>{{request._id}}</td>
+           <td>{{request.customer}}</td>
+            <td>{{request.driver || 'not assigned'}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.date| date}}</td>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>

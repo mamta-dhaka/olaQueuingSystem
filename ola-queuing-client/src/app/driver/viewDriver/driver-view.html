@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-9 text-center font-weight-bold mb-3" style="font-size: 28px"> Driver App - driver_id = {{driver.driverId}} </div>
+  <div class="col-3 p-2">
+    <button (click)="refresh()">Refresh</button>
+  </div>
+  <!--<div class="col-12 font-weight-bold" *ngIf="driver"> {{driver.driverId}}</div>-->
+  <div class="col-4 border-dark">
+    <div class="text-center font-weight-bold mb-2"style="font-size: 25px">Waiting</div>
+    <div  *ngIf="newRequests">
+      <div class = "border p2 mb-3" style="background: beige;" *ngFor="let req of newRequests">
+        <div class="row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> Req.Id: </div>
+          <div class="col-9 ">{{req.reqNu}}</div>
+        </div>
+        <div class=" row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
+          <div class="col-9 ">{{req.customer}}</div>
+        </div>
+        <button class="btn btn-info ml-4" *ngIf="req" (click)="selectRide(req._id)">Select</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="text-center font-weight-bold mb-2" style="font-size: 25px">Ongoing</div>
+    <div  *ngIf="ongoingRequests">
+      <div class ="border p2 mb-3" style="    background: lavender;" *ngFor="let req of ongoingRequests">
+        <div class="row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> ReqId: </div>
+          <div class="col-9 ">{{req.reqNu}}</div>
+        </div>
+        <div class="row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
+          <div class="col-9">{{req.customer}}</div>
+        </div>
+        <button class="btn btn-info ml-4" *ngIf="req" (click)="endRide(req._id)">End Ride</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="text-center font-weight-bold mb-2"style="font-size: 25px">Completed</div>
+    <div  *ngIf="completedRequests">
+      <div class="border p-2 mb-3" style="background: antiquewhite;" *ngFor="let req of completedRequests">
+        <div class="row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> Req.Id: </div>
+          <div class="col-9 ">{{req.reqNu}}</div>
+        </div>
+        <div class="row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
+          <div class="col-9 ">{{req.customer}}</div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
