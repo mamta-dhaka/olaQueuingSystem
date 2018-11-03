@@ -18,6 +18,8 @@ export class NewDriverComponent {
 
 
   create() {
+      this.newDriver.active = false;
+      this.newDriver.requests = [];
       this.conn.createDriver(this.newDriver)
       .subscribe((res) => {
         console.log('?', res.data);

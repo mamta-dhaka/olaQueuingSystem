@@ -10,7 +10,7 @@ exports.getCustomers = async function(query, page, limit){
         return customers;
 
     } catch (e) {
-        throw Error('Error while Paginating Todos')
+        throw Error('Error while Paginating driver')
     }
 }
 
@@ -24,7 +24,7 @@ exports.createCustomers = async function(customer){
 
         return savedCustomer;
     }catch(e){
-        throw Error("Error while Creating Todo");
+        throw Error("Error while Creating customer");
     }
 }
 
@@ -32,10 +32,10 @@ exports.deleteCustomer = async function(id){
     try{
         var deleted = await Customer.remove({_id: id});
         if(deleted.result.n === 0){
-            throw Error("Todo Could not be deleted");
+            throw Error("customer Could not be deleted");
         }
         return deleted;
     }catch(e){
-        throw Error("Error Occured while Deleting the Todo");
+        throw Error("Error Occured while Deleting the customer");
     }
 }

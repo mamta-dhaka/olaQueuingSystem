@@ -34,25 +34,24 @@ exports.createDriver = async function(req, res, next){
 }
 
 exports.updateDriver = async function(req, res, next){
-
     if(!req.body._id){
         return res.status(400).json({status: 400., message: "Id must be present"})
     }
 
     var id = req.body._id;
 
-    console.log(req.body)
+    console.log('8848848484', req.body)
 
     var request = {
         id,
-        status: req.body.status ? req.body.status : null,
-        customer: req.body.customer ? req.body.customer : null,
-        driver: req.body.driver ? req.body.driver : null
+        active: req.body.active,
+        requests: req.body.requests,
+        driver: req.body.driver
     }
 
     try{
         var updatedRequest = await DriverService.updateDriver(request)
-        return res.status(200).json({status: 200, data: updatedRequest, message: "Succesfully Updated Tod"})
+        return res.status(200).json({status: 200, data: updatedRequest, message: "Succesfully Updated driver"})
     }catch(e){
         return res.status(400).json({status: 400., message: e.message})
     }

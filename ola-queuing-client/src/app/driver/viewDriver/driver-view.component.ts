@@ -37,6 +37,7 @@ export class DriverViewComponent implements OnDestroy, OnInit {
         .subscribe(drivers => {
           this.driverList = drivers;
           this.driver = this.driverList.find((idriver: any) => idriver.driverId === driverId);
+          console.log('lallalallalallaala', this.driver.active);
           this.conn.getRequests()
             .subscribe((req: any[]) => {
               this.driversAllRequests = req.filter((r: any) => r.driver === this.driver.driverId);
@@ -57,18 +58,22 @@ export class DriverViewComponent implements OnDestroy, OnInit {
     console.log('lallalallalallaala', this.driver.active);
     if (this.driver.active) {
       return;
+    } else {
+      const requestObject = this.newRequests.find((r) => r._id === req);
+      requestObject.driver = this.driver.driverId;
+      requestObject.status = 'ongoing'
+      this.driver.active = true;
+      this.driver.requests.push(requestObject);
+      console.log('>>>', this.driver);
+      this.conn.updateDriver(this.driver).subscribe((dr) => console.log(dr));
+      this.conn.updateRequest(requestObject).subscribe((qrequest) => console.log(qrequest));
     }
-    const requestObject = this.newRequests.find((r) => r._id === req);
-     requestObject.driver = this.driver.driverId;
-    requestObject.status = 'ongoing'
-    this.driver.active = true;
-    this.driver.requests.push(requestObject);
-    this.conn.updateDriver(this.driver).subscribe((dr) => console.log(dr));
-    this.conn.updateRequest(requestObject).subscribe((qrequest) => console.log(qrequest));
   }
   endRide(req): void {
     const reqObj = this.ongoingRequests.find((r) => r._id === req);
     reqObj.status = 'completed';
+    this.driver.active = false;
+    this.conn.updateDriver(this.driver).subscribe((dr) => console.log(dr));
     this.conn.updateRequest(reqObj).subscribe((u) => console.log(u));
   }
   ngOnDestroy(): void {

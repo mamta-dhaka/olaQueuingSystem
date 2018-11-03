@@ -10,7 +10,7 @@ exports.getDrivers = async function(query, page, limit){
         return drivers;
 
     } catch (e) {
-        throw Error('Error while Paginating Todos')
+        throw Error('Error while Paginating Driver')
     }
 }
 
@@ -26,7 +26,7 @@ exports.createDriver = async function(driver){
 
         return savedDriver;
     }catch(e){
-        throw Error("Error while Creating Todo");
+        throw Error("Error while Creating Driver");
     }
 }
 
@@ -36,13 +36,13 @@ exports.updateDriver = async function(driver){
     try{
         var oldDriver = await Driver.findById(id);
     }catch(e){
-        throw Error("Error occured while Finding the Todo")
+        throw Error("Error occured while Finding the Driver")
     }
     if(!oldDriver){
         return false;
     }
 
-    console.log(oldDriver);
+    console.log('?>>>>>>>', oldDriver);
     oldDriver.active = driver.active;
     oldDriver.request = driver.request;
 
@@ -53,7 +53,7 @@ exports.updateDriver = async function(driver){
         var savedDriver = await oldDriver.save();
         return savedDriver;
     }catch(e){
-        throw Error("And Error occured while updating the Todo");
+        throw Error("And Error occured while updating the Driver");
     }
 }
 
@@ -61,10 +61,10 @@ exports.deleteDriver = async function(id){
     try{
         var deleted = await Driver.remove({_id: id});
         if(deleted.result.n === 0){
-            throw Error("Todo Could not be deleted");
+            throw Error("Driver Could not be deleted");
         }
         return deleted;
     }catch(e){
-        throw Error("Error Occured while Deleting the Todo");
+        throw Error("Error Occured while Deleting the Driver");
     }
 }
