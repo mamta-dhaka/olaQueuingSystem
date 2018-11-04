@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import * as moment from 'moment';
 import { ConnectionService } from '../../services/connection.service';
 import Driver from '../../models/driver.models';
 import Request from '../../models/request.models';
