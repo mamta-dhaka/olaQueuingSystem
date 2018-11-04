@@ -14,13 +14,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let request of allRequests">
-           <td>{{request._id}}</td>
-           <td>{{request.customer}}</td>
+        <tr *ngFor="let request of allRequests; let i = index;">
+            <td>{{request._id}}</td>
+            <td>{{request.customer}}</td>
             <td>{{request.driver || 'not assigned'}}</td>
             <td>{{request.status}}</td>
-            <td>{{request.date| date}}</td>
-
+            <td>{{request.time}} minutes</td>
         </tr>
         </tbody>
       </table>

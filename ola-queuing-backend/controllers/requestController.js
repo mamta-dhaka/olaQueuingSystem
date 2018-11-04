@@ -49,7 +49,9 @@ exports.updateRequest = async function(req, res, next){
         id,
         status: req.body.status ? req.body.status : null,
         customer: req.body.customer ? req.body.customer : null,
-        driver: req.body.driver ? req.body.driver : null
+        driver: req.body.driver ? req.body.driver : null,
+        startDate: req.body.startDate ? req.body.startDate: null,
+        endDate: req.body.endDate ? req.body.endDate : null
     }
 
     try{

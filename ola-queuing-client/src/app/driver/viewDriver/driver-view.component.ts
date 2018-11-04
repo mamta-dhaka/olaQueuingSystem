@@ -43,8 +43,20 @@ export class DriverViewComponent implements OnDestroy, OnInit {
             .subscribe((req: any[]) => {
               this.driversAllRequests = req.filter((r: any) => r.driver === this.driver.driverId);
               this.newRequests = req.filter((r: any) => r.status === 'waiting');
+              this.newRequests.forEach((r: any) => {
+                r.requestedAt = moment().diff(moment(r.date), "minutes");
+              });
               this.completedRequests = this.driversAllRequests.filter((r: any) => r.status === 'completed');
+              this.completedRequests.forEach((r: any) => {
+                r.requestedAt = moment().diff(moment(r.date), "minutes");
+                r.startedAt = moment().diff(moment(r.startDate), "minutes");
+                r.endedAt = moment().diff(moment(r.endDate), "minutes");
+              });
               this.ongoingRequests = this.driversAllRequests.filter((r: any) => r.status === 'ongoing');
+              this.ongoingRequests.forEach((r: any) => {
+                r.requestedAt = moment().diff(moment(r.date), "minutes");
+                r.startedAt = moment().diff(moment(r.startDate), "minutes");
+              });
               console.log(this.driver, this.completedRequests);
             });
         });
@@ -56,13 +68,13 @@ export class DriverViewComponent implements OnDestroy, OnInit {
     this.subscribeToUrlQueryParams();
   }
   selectRide(req): void {
-    console.log('lallalallalallaala', this.driver.active);
     if (this.driver.active) {
       return;
     } else {
       const requestObject = this.newRequests.find((r) => r._id === req);
       requestObject.driver = this.driver.driverId;
       requestObject.status = 'ongoing'
+      requestObject.startDate = moment();
       this.driver.active = true;
       this.driver.requests.push(requestObject);
       console.log('>>>', this.driver);
@@ -73,6 +85,7 @@ export class DriverViewComponent implements OnDestroy, OnInit {
   endRide(req): void {
     const reqObj = this.ongoingRequests.find((r) => r._id === req);
     reqObj.status = 'completed';
+    reqObj.endDate = moment();
     this.driver.active = false;
     this.conn.updateDriver(this.driver).subscribe((dr) => console.log(dr));
     this.conn.updateRequest(reqObj).subscribe((u) => console.log(u));

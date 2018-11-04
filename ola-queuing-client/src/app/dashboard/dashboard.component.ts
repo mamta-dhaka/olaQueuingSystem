@@ -20,6 +20,9 @@ export class DashboardComponent implements OnInit {
     this.conn.getRequests()
       .subscribe(requests => {
         this.allRequests = requests;
+        this.allRequests.forEach((r: any) => {
+          r.time =  moment().diff(moment(r.date), "minutes")
+        })
         console.log('>>>>', requests);
         });
   }

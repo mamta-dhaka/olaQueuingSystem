@@ -21,7 +21,9 @@ exports.createRequest = async function(request){
         customer: request.customer,
         driver: request.driver,
         date: new Date(),
-        status: request.status
+        status: request.status,
+        startDate: request.startDate || null,
+        endDate: request.endDate || null
     });
     try{
         var savedRequest = await newRequest.save();
@@ -45,9 +47,11 @@ exports.updateRequest = async function(request){
     }
 
     console.log(oldRequest);
-    oldRequest.driver = request.driver;
+        oldRequest.driver = request.driver? request.driver: oldRequest.driver;
     // oldRequest.description = oldRequest.description;
-    oldRequest.status = request.status;
+        oldRequest.status = request.status ? request.status: oldRequest.status;
+        oldRequest.endDate = request.endDate? request.endDate : oldRequest.endDate;
+        oldRequest.startDate = request.startDate? request.startDate: oldRequest.startDate;
 
 
     console.log(oldRequest);

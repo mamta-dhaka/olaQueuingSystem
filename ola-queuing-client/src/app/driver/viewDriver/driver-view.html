@@ -16,6 +16,10 @@
           <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
           <div class="col-9 ">{{req.customer}}</div>
         </div>
+        <div class=" row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> time: </div>
+          <div class="col-9 ">{{(req.requestedAt)}} minutes ago</div>
+        </div>
         <button class="btn btn-info ml-4" *ngIf="req" (click)="selectRide(req._id)">Select</button>
       </div>
     </div>
@@ -32,6 +36,14 @@
           <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
           <div class="col-9">{{req.customer}}</div>
         </div>
+        <div class=" row">
+          <div class="col-4 font-weight-bold" *ngIf="req"> requested  </div>
+          <div class="col-8 ">{{(req.requestedAt)}} minutes ago</div>
+        </div>
+        <div class=" row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> started </div>
+          <div class="col-9 ">{{(req.startedAt)}} minutes ago</div>
+        </div>
         <button class="btn btn-info ml-4" *ngIf="req" (click)="endRide(req._id)">End Ride</button>
       </div>
     </div>
@@ -47,6 +59,18 @@
         <div class="row">
           <div class="col-3 font-weight-bold" *ngIf="req"> cust.Id: </div>
           <div class="col-9 ">{{req.customer}}</div>
+        </div>
+        <div class=" row">
+          <div class="col-4 font-weight-bold" *ngIf="req"> requested  </div>
+          <div class="col-8 ">{{(req.requestedAt)}} minutes ago</div>
+        </div>
+        <div class=" row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> started </div>
+          <div class="col-9 ">{{(req.startedAt)}} minutes ago</div>
+        </div>
+        <div class=" row">
+          <div class="col-3 font-weight-bold" *ngIf="req"> ended </div>
+          <div class="col-9 ">{{(req.endedAt)}} minutes ago</div>
         </div>
       </div>
     </div>

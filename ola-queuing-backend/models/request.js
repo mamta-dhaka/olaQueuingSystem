@@ -7,7 +7,9 @@ var RequestSchema = new mongoose.Schema({
     customer: String,
     driver: String,
     date: Date,
-    status: String
+    status: String,
+    startDate: Date,
+    endDate: Date
 })
 
 RequestSchema.plugin(mongoosePaginate)
