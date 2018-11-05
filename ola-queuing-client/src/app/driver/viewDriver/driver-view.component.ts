@@ -38,7 +38,6 @@ export class DriverViewComponent implements OnDestroy, OnInit {
         .subscribe(drivers => {
           this.driverList = drivers;
           this.driver = this.driverList.find((idriver: any) => idriver.driverId === driverId);
-          console.log('lallalallalallaala', this.driver.active);
           this.conn.getRequests()
             .subscribe((req: any[]) => {
               this.driversAllRequests = req.filter((r: any) => r.driver === this.driver.driverId);

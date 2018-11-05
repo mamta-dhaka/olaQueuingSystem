@@ -12,7 +12,7 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable()
 export class ConnectionService {
 
-  api_url = 'http://localhost:3000';
+  api_url = 'https://dec7bd50.ngrok.io';
   customerUrl = `${this.api_url}/api/customers`;
   requestUrl = `${this.api_url}/api/request`;
   driverUrl = `${this.api_url}/api/driver`;
