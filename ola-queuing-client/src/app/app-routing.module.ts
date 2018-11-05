@@ -18,6 +18,7 @@ const routes: Routes = [
     component: DriverComponent,
     loadChildren: (): any => DriverModule,
   },
+
   {
     path: 'dashboard',
     component: DashboardComponent,
